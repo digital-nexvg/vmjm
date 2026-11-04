@@ -1,0 +1,723 @@
+﻿/* ===================================
+   VMJM - RESPONSIVE DESIGN
+   =================================== */
+
+/* Tablets e Desktops pequenos (até 1024px) */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 20px;
+    }
+    
+    h1 {
+        font-size: clamp(2rem, 5vw, 3rem);
+    }
+    
+    h2 {
+        font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+    }
+    
+    /* Header */
+    .header-container {
+        padding: 15px 20px;
+    }
+    
+    .nav-desktop {
+        margin: 0 20px;
+    }
+    
+    .nav-desktop ul {
+        gap: 25px;
+    }
+    
+    .nav-desktop a {
+        font-size: 0.85rem;
+    }
+    
+    /* Hero */
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 40px 20px;
+    }
+    
+    .hero-image {
+        grid-column: 1;
+        grid-row: 1;
+    }
+    
+    .hero-text {
+        grid-column: 1;
+        grid-row: 2;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    /* Sobre */
+    .sobre {
+        padding: 80px 0;
+    }
+    
+    .sobre-content {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    
+    /* Serviços */
+    .servicos {
+        padding: 80px 0;
+    }
+    
+    .servicos-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+    
+    /* Estrutura */
+    .estrutura {
+        padding: 80px 0;
+    }
+    
+    .galeria-estrutura {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .galeria-item-lg {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+    
+    .galeria-item {
+        aspect-ratio: 1;
+    }
+    
+    /* Diferenciais */
+    .diferenciais {
+        padding: 80px 0;
+    }
+    
+    .diferenciais-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+    
+    /* Avaliações */
+    .avaliacoes {
+        padding: 80px 0;
+    }
+    
+    .avaliacao-card {
+        flex: 0 0 calc(50% - 10px);
+    }
+    
+    /* CTA */
+    .cta {
+        padding: 60px 0;
+    }
+    
+    .cta h2 {
+        font-size: 2rem;
+    }
+    
+    /* Contato */
+    .contato {
+        padding: 80px 0;
+    }
+    
+    .contato-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+    
+    /* Footer */
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 50px;
+    }
+}
+
+/* Mobile - Tablets pequenos (até 768px) */
+@media (max-width: 768px) {
+    :root {
+        --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+        --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+        --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+    
+    .container {
+        padding: 0 16px;
+    }
+    
+    h1 {
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+    }
+    
+    h2 {
+        font-size: clamp(1.25rem, 3vw, 1.75rem);
+    }
+    
+    h3 {
+        font-size: 1.1rem;
+    }
+    
+    p {
+        font-size: 0.95rem;
+    }
+    
+    /* Header */
+    .header-container {
+        padding: 12px 16px;
+    }
+    
+    .logo-img {
+        height: 40px;
+    }
+    
+    .nav-desktop {
+        display: none;
+    }
+    
+    .header-actions {
+        gap: 15px;
+    }
+    
+    .btn-solicitar {
+        padding: 10px 16px;
+        font-size: 0.75rem;
+    }
+    
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .nav-mobile {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-height: 80vh;
+        overflow-y: auto;
+        background-color: rgba(0, 0, 0, 0.95);
+    }
+    
+    .nav-mobile ul {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    /* Hero */
+    .hero {
+        min-height: 90vh;
+        padding-top: 70px;
+    }
+    
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 30px 16px;
+    }
+    
+    .hero-label {
+        font-size: 0.75rem;
+    }
+    
+    .hero-title {
+        margin-bottom: 20px;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+    
+    .hero-buttons {
+        gap: 12px;
+    }
+    
+    .btn {
+        padding: 12px 24px;
+        font-size: 0.85rem;
+    }
+    
+    .btn-secondary {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .hero-accent {
+        display: none;
+    }
+    
+    /* Sobre */
+    .sobre {
+        padding: 60px 0;
+    }
+    
+    .section-header {
+        margin-bottom: 50px;
+    }
+    
+    .section-header p {
+        font-size: 0.95rem;
+    }
+    
+    /* Serviços */
+    .servicos {
+        padding: 60px 0;
+    }
+    
+    .servicos-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .servico-item {
+        padding: 30px 20px;
+    }
+    
+    /* Estrutura */
+    .estrutura {
+        padding: 60px 0;
+    }
+    
+    .galeria-estrutura {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .galeria-item {
+        aspect-ratio: 1;
+    }
+    
+    /* Diferenciais */
+    .diferenciais {
+        padding: 60px 0;
+    }
+    
+    .diferenciais-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+    
+    .diferencial-item {
+        padding: 20px;
+    }
+    
+    /* Avaliações */
+    .avaliacoes {
+        padding: 60px 0;
+    }
+    
+    .carousel-container {
+        margin: 30px -16px 0;
+        padding: 0 16px;
+    }
+    
+    .carousel {
+        scroll-snap-type: x mandatory;
+    }
+    
+    .avaliacao-card {
+        flex: 0 0 100%;
+        margin-right: 16px;
+        padding: 30px 20px;
+        scroll-snap-align: start;
+    }
+    
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .carousel-prev {
+        left: 8px;
+    }
+    
+    .carousel-next {
+        right: 8px;
+    }
+    
+    /* CTA */
+    .cta {
+        padding: 50px 0;
+    }
+    
+    .cta h2 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+    
+    .cta p {
+        font-size: 0.95rem;
+        margin-bottom: 30px;
+    }
+    
+    .btn-cta {
+        padding: 14px 28px;
+        font-size: 0.9rem;
+        width: 100%;
+    }
+    
+    /* Contato */
+    .contato {
+        padding: 60px 0;
+    }
+    
+    .contato-info {
+        gap: 30px;
+    }
+    
+    .info-item {
+        gap: 15px;
+    }
+    
+    .info-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+    
+    .map-container {
+        min-height: 300px;
+    }
+    
+    /* Footer */
+    .footer {
+        padding: 60px 0 20px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+    
+    .footer-logo img {
+        height: 40px;
+    }
+    
+    /* WhatsApp flutuante */
+    .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+}
+
+/* Mobile pequeno - Phones (até 480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 12px;
+    }
+    
+    h1 {
+        font-size: clamp(1.5rem, 3.5vw, 2rem);
+    }
+    
+    h2 {
+        font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    }
+    
+    h3 {
+        font-size: 1rem;
+    }
+    
+    p {
+        font-size: 0.9rem;
+    }
+    
+    /* Header */
+    .header-container {
+        padding: 10px 12px;
+    }
+    
+    .logo-img {
+        height: 35px;
+    }
+    
+    .btn-solicitar {
+        padding: 8px 12px;
+        font-size: 0.7rem;
+    }
+    
+    /* Hero */
+    .hero {
+        min-height: 85vh;
+        padding-top: 65px;
+    }
+    
+    .hero-content {
+        padding: 25px 12px;
+        gap: 25px;
+    }
+    
+    .hero-label {
+        font-size: 0.7rem;
+        margin-bottom: 15px;
+    }
+    
+    .hero-title {
+        margin-bottom: 15px;
+    }
+    
+    .hero-description {
+        font-size: 0.95rem;
+        margin-bottom: 25px;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn {
+        padding: 10px 16px;
+        font-size: 0.8rem;
+    }
+    
+    /* Seções */
+    .sobre,
+    .servicos,
+    .estrutura,
+    .diferenciais,
+    .avaliacoes,
+    .contato {
+        padding: 50px 0;
+    }
+    
+    .section-header {
+        margin-bottom: 40px;
+    }
+    
+    .section-header h2 {
+        margin-bottom: 15px;
+    }
+    
+    .section-header p {
+        font-size: 0.9rem;
+    }
+    
+    /* Serviços */
+    .servico-item {
+        padding: 25px 15px;
+    }
+    
+    .servico-number {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+    
+    .servico-item h3 {
+        font-size: 1rem;
+    }
+    
+    .servico-item p {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+    
+    /* Estrutura */
+    .galeria-estrutura {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    
+    /* Diferenciais */
+    .diferenciais-grid {
+        gap: 25px;
+    }
+    
+    .diferencial-icon {
+        font-size: 2.2rem;
+        margin-bottom: 15px;
+    }
+    
+    .diferencial-item h3 {
+        font-size: 0.95rem;
+    }
+    
+    .diferencial-item p {
+        font-size: 0.85rem;
+    }
+    
+    /* Avaliações */
+    .avaliacao-card {
+        padding: 25px 15px;
+        flex: 0 0 100%;
+        margin-right: 12px;
+    }
+    
+    .avaliacao-stars i {
+        font-size: 0.9rem;
+    }
+    
+    .avaliacao-texto {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+    
+    .avaliacao-autor {
+        font-size: 0.95rem;
+    }
+    
+    .carousel-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 0.85rem;
+    }
+    
+    /* CTA */
+    .cta-content {
+        padding: 20px 12px;
+    }
+    
+    .cta h2 {
+        font-size: 1.3rem;
+    }
+    
+    .cta p {
+        font-size: 0.9rem;
+        margin-bottom: 25px;
+    }
+    
+    .btn-cta {
+        padding: 12px 20px;
+        font-size: 0.85rem;
+    }
+    
+    /* Contato */
+    .contato-info {
+        gap: 25px;
+    }
+    
+    .info-item {
+        gap: 12px;
+    }
+    
+    .info-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+    
+    .info-content h3 {
+        font-size: 0.95rem;
+        margin-bottom: 5px;
+    }
+    
+    .info-content p {
+        font-size: 0.85rem;
+        margin-bottom: 0;
+    }
+    
+    /* Footer */
+    .footer {
+        padding: 50px 0 15px;
+    }
+    
+    .footer-logo img {
+        height: 35px;
+    }
+    
+    .footer-section h4 {
+        font-size: 0.85rem;
+        margin-bottom: 15px;
+    }
+    
+    .footer-section ul li {
+        margin-bottom: 10px;
+    }
+    
+    .footer-section a {
+        font-size: 0.85rem;
+    }
+    
+    .footer-section > p {
+        font-size: 0.8rem;
+        margin-bottom: 15px;
+    }
+    
+    .footer-bottom {
+        font-size: 0.75rem;
+        padding-top: 20px;
+    }
+    
+    /* WhatsApp flutuante */
+    .whatsapp-float {
+        bottom: 15px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+}
+
+/* Orientação Landscape - Devices pequenos */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding: 60px 0;
+    }
+    
+    .hero-content {
+        gap: 30px;
+    }
+}
+
+/* Impressão */
+@media print {
+    .header,
+    .whatsapp-float,
+    .carousel-btn,
+    .cta {
+        display: none;
+    }
+    
+    body {
+        background-color: white;
+    }
+    
+    .btn {
+        border: 1px solid #333;
+        color: #333;
+        background-color: transparent;
+    }
+}
+
+/* Prefere Motion Reduzido */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Modo escuro (suporte opcional) */
+@media (prefers-color-scheme: dark) {
+    /* Implementar suporte a dark mode se necessário */
+}
+
+/* High DPI / Retina displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .btn:hover,
+    .servico-item:hover,
+    .diferencial-item:hover {
+        box-shadow: var(--shadow-lg);
+    }
+}

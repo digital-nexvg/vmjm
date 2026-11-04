@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist Final - VMJM Serviços Automotivos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #171717 0%, #2a2a2a 100%);
+            color: #fff;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px;
+            background: rgba(255, 208, 0, 0.1);
+            border: 2px solid #FFD000;
+            border-radius: 12px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #FFD000;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            color: #ccc;
+        }
+
+        .progress {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 30px 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #FFD000, #FFA500);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-box {
+            background: rgba(255, 208, 0, 0.05);
+            border: 1px solid #FFD000;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            color: #FFD000;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-top: 5px;
+        }
+
+        .sections {
+            display: grid;
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 208, 0, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: rgba(255, 208, 0, 0.1);
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: background 0.2s;
+        }
+
+        .section-header:hover {
+            background: rgba(255, 208, 0, 0.15);
+        }
+
+        .section-title {
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .section-icon {
+            color: #FFD000;
+            font-size: 1.5em;
+            transition: transform 0.3s;
+        }
+
+        .section.open .section-icon {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 20px;
+        }
+
+        .section.open .section-content {
+            max-height: 1000px;
+            padding: 20px;
+        }
+
+        .tasks {
+            list-style: none;
+            display: grid;
+            gap: 12px;
+        }
+
+        .task {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .task:hover {
+            background: rgba(255, 208, 0, 0.05);
+        }
+
+        .task input {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #FFD000;
+        }
+
+        .task label {
+            flex: 1;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .task.completed label {
+            text-decoration: line-through;
+            color: #888;
+        }
+
+        .task-description {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-left: 32px;
+            margin-top: 6px;
+        }
+
+        .footer-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 15px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #FFD000;
+            color: #171717;
+        }
+
+        .btn-primary:hover {
+            background: #FFA500;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 208, 0, 0.1);
+            color: #FFD000;
+            border: 1px solid #FFD000;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 208, 0, 0.2);
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        .result.success {
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid #4CAF50;
+            color: #90EE90;
+        }
+
+        .result.warning {
+            background: rgba(255, 193, 7, 0.2);
+            border: 1px solid #FFC107;
+            color: #FFD000;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .stat-box {
+                padding: 15px;
+            }
+
+            .section-title {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✓ VMJM - Checklist Final</h1>
+            <p>Site Institucional | Verificação de Tarefas e Status</p>
+            <div class="progress">
+                <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+            </div>
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="stat-number" id="totalTasks">0</div>
+                    <div class="stat-label">Total de Tarefas</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="completedTasks">0</div>
+                    <div class="stat-label">Concluídas</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="percentTasks">0%</div>
+                    <div class="stat-label">Progresso</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sections" id="sections"></div>
+
+        <div class="footer-actions">
+            <button class="btn btn-primary" onclick="checkAll()">✓ Marcar Todas</button>
+            <button class="btn btn-secondary" onclick="uncheckAll()">✗ Desmarcar Todas</button>
+            <button class="btn btn-primary" onclick="printList()">🖨️ Imprimir</button>
+            <button class="btn btn-secondary" onclick="downloadList()">⬇️ Baixar PDF</button>
+        </div>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        const checklists = {
+            "Preparação (Antes de Publicar)": [
+                { task: "Dados reais inseridos no HTML", desc: "Empresa, contato, horário" },
+                { task: "WhatsApp número confirmado", desc: "Entre em contato com cliente" },
+                { task: "Telefone e Email corretos", desc: "Verificar com cliente" },
+                { task: "Endereço completo e mapa", desc: "Localização precisa" },
+                { task: "Horário de funcionamento", desc: "Dias e horas de atendimento" },
+                { task: "Redes sociais linkadas", desc: "Instagram, Facebook, etc" },
+            ],
+            "Imagens e Logos": [
+                { task: "Imagens profissionais inseridas", desc: "Fachada, equipe, estrutura" },
+                { task: "Logos definitivos colocados", desc: "Colorido e branco" },
+                { task: "Otimização de imagens", desc: "Máximo 150KB cada" },
+                { task: "Avaliações reais adicionadas", desc: "Google Reviews ou clientes" },
+                { task: "Google Maps configurado", desc: "Mapa interativo funcionando" },
+                { task: "Favicon personalizado", desc: "Icone na abinha do navegador" },
+            ],
+            "Testes de Funcionalidade": [
+                { task: "Testad em Chrome", desc: "Todos os elementos visíveis" },
+                { task: "Testad em Firefox", desc: "Compatibilidade total" },
+                { task: "Testad em Safari", desc: "Navegador Apple" },
+                { task: "Testad em iPhone", desc: "Mobile iOS" },
+                { task: "Testad em Android", desc: "Mobile Android" },
+                { task: "Testad em Tablet", desc: "iPad ou tablet Android" },
+            ],
+            "Verificações Técnicas": [
+                { task: "Console sem erros (F12)", desc: "Sem mensagens vermelhas" },
+                { task: "Todos links funcionando", desc: "Verificar cada link" },
+                { task: "Imagens carregando", desc: "Nenhuma imagem quebrada" },
+                { task: "Menu mobile funcionando", desc: "Toggle e navegação" },
+                { task: "Carrossel funcionando", desc: "Setas, swipe, indicadores" },
+                { task: "WhatsApp links funcionando", desc: "Abre conversa corretamente" },
+            ],
+            "Performance e SEO": [
+                { task: "PageSpeed > 80", desc: "Testar em pagespeed.web.dev" },
+                { task: "Mobile-friendly OK", desc: "Testar em mobile-friendly" },
+                { task: "SSL/HTTPS configurado", desc: "Página segura" },
+                { task: "Meta tags preenchidas", desc: "Title, description, og:" },
+                { task: "Google Analytics adicionado", desc: "Rastreamento funcional" },
+                { task: "Sitemap.xml criado", desc: "Para SEO" },
+            ],
+            "Publicação (Deployment)": [
+                { task: "Hosting escolhido", desc: "Vercel, Netlify, GitHub Pages, etc" },
+                { task: "Domínio registrado", desc: "vmjmautomotivos.com.br (exemplo)" },
+                { task: "DNS configurado", desc: "Apontando para hosting" },
+                { task: "Deploy realizado", desc: "Site ao vivo" },
+                { task: "Testado em produção", desc: "Verificar link final" },
+                { task: "Google Search Console", desc: "Site verificado e enviado" },
+            ],
+            "Pós-Publicação": [
+                { task: "Monitorar Analytics", desc: "Primeiros acessos" },
+                { task: "Responder mensagens", desc: "WhatsApp e formulários" },
+                { task: "Atualizar redes sociais", desc: "Informar novo site" },
+                { task: "Coletar avaliações iniciais", desc: "Pedir para clientes" },
+                { task: "Backup de dados", desc: "Segurança" },
+                { task: "Monitorar performance", desc: "Speed e uptime" },
+            ],
+        };
+
+        function initChecklist() {
+            const container = document.getElementById('sections');
+            
+            Object.entries(checklists).forEach((entry, idx) => {
+                const [sectionName, tasks] = entry;
+                
+                const section = document.createElement('div');
+                section.className = 'section';
+                section.id = `section-${idx}`;
+                
+                const header = document.createElement('div');
+                header.className = 'section-header';
+                header.onclick = () => toggleSection(idx);
+                
+                const title = document.createElement('div');
+                title.className = 'section-title';
+                title.textContent = sectionName;
+                
+                const icon = document.createElement('div');
+                icon.className = 'section-icon';
+                icon.textContent = '▼';
+                
+                header.appendChild(title);
+                header.appendChild(icon);
+                
+                const content = document.createElement('div');
+                content.className = 'section-content';
+                
+                const taskList = document.createElement('ul');
+                taskList.className = 'tasks';
+                
+                tasks.forEach((t, taskIdx) => {
+                    const taskItem = document.createElement('li');
+                    taskItem.className = 'task';
+                    taskItem.id = `task-${idx}-${taskIdx}`;
+                    
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.onchange = updateProgress;
+                    
+                    const label = document.createElement('label');
+                    label.textContent = t.task;
+                    label.onclick = (e) => {
+                        if (e.target !== checkbox) {
+                            checkbox.checked = !checkbox.checked;
+                            updateProgress();
+                        }
+                    };
+                    
+                    taskItem.appendChild(checkbox);
+                    taskItem.appendChild(label);
+                    
+                    if (t.desc) {
+                        const desc = document.createElement('div');
+                        desc.className = 'task-description';
+                        desc.textContent = '📝 ' + t.desc;
+                        taskItem.appendChild(desc);
+                    }
+                    
+                    taskList.appendChild(taskItem);
+                });
+                
+                content.appendChild(taskList);
+                section.appendChild(header);
+                section.appendChild(content);
+                container.appendChild(section);
+            });
+            
+            updateProgress();
+        }
+
+        function toggleSection(idx) {
+            const section = document.getElementById(`section-${idx}`);
+            section.classList.toggle('open');
+        }
+
+        function updateProgress() {
+            const allCheckboxes = document.querySelectorAll('.task input[type="checkbox"]');
+            const checkedCheckboxes = document.querySelectorAll('.task input[type="checkbox"]:checked');
+            
+            const total = allCheckboxes.length;
+            const completed = checkedCheckboxes.length;
+            const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+            
+            document.getElementById('totalTasks').textContent = total;
+            document.getElementById('completedTasks').textContent = completed;
+            document.getElementById('percentTasks').textContent = percent + '%';
+            
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = percent + '%';
+            
+            document.querySelectorAll('.task').forEach(task => {
+                const checkbox = task.querySelector('input[type="checkbox"]');
+                if (checkbox.checked) {
+                    task.classList.add('completed');
+                } else {
+                    task.classList.remove('completed');
+                }
+            });
+            
+            if (percent === 100) {
+                showResult('success', '🎉 Parabéns! Todas as tarefas foram concluídas! Seu site está pronto para ir ao ar!');
+            }
+        }
+
+        function checkAll() {
+            document.querySelectorAll('.task input[type="checkbox"]').forEach(cb => {
+                cb.checked = true;
+            });
+            updateProgress();
+        }
+
+        function uncheckAll() {
+            document.querySelectorAll('.task input[type="checkbox"]').forEach(cb => {
+                cb.checked = false;
+            });
+            updateProgress();
+        }
+
+        function showResult(type, message) {
+            const result = document.getElementById('result');
+            result.textContent = message;
+            result.className = `result show ${type}`;
+        }
+
+        function printList() {
+            window.print();
+        }
+
+        function downloadList() {
+            const total = document.querySelectorAll('.task input[type="checkbox"]').length;
+            const completed = document.querySelectorAll('.task input[type="checkbox"]:checked').length;
+            
+            let text = "VMJM SERVIÇOS AUTOMOTIVOS - CHECKLIST DE LANÇAMENTO\n";
+            text += "=" .repeat(60) + "\n\n";
+            text += `Progresso: ${completed}/${total} (${Math.round((completed/total)*100)}%)\n\n`;
+            
+            Object.entries(checklists).forEach(([sectionName, tasks]) => {
+                text += `\n${sectionName.toUpperCase()}\n`;
+                text += "-".repeat(40) + "\n";
+                
+                tasks.forEach((t, idx) => {
+                    const taskEl = document.getElementById(`task-${Object.keys(checklists).indexOf(sectionName)}-${idx}`);
+                    const checked = taskEl.querySelector('input').checked;
+                    text += (checked ? "✓" : "☐") + " " + t.task + "\n";
+                });
+            });
+            
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'vmjm-checklist.txt';
+            a.click();
+        }
+
+        // Inicializar ao carregar
+        document.addEventListener('DOMContentLoaded', initChecklist);
+    </script>
+</body>
+</html>
