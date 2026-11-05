@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
         prevBtnId: 'carouselPrev',
         nextBtnId: 'carouselNext',
         indicatorsId: 'carouselIndicadores',
-        autoPlay: true,
+        autoPlay: false,
         autoPlayDelay: 6000
     });
 });
